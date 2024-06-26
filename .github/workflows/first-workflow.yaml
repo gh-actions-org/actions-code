@@ -28,4 +28,4 @@ jobs:
       - name: Echo string
         run: Write-Output "Hello, world!"
       - name: Error step
-        run: not-exist-command
+        run: not-exist-command-update

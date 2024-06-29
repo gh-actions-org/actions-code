@@ -17,3 +17,12 @@ jobs:
         run: echo "::warning title=Warning title,file=app.js,line=10,col=15::Something went wrong"
       - name: Setting Notice message with params
         run: echo "::notice title=Notice title,file=app.js,line=10,col=15::Something went wrong"
+      - name: Group of logs
+        run: |
+          echo "::group::Group of logs"
+          echo "Inside group"
+          echo "::endgroup::"
+      - name: Masking a value
+        run: echo "::add-mask::secret-value"
+      - name: Echo a secret
+        run: echo "secret-value"

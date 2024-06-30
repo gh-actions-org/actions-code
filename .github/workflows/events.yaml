@@ -3,7 +3,12 @@ name: Repository Events
 on:
   push:
   pull_request:
+    types:
+      - opened
+      - synchronize
   issues:
+    types:
+      - opened
 
 jobs:
   checkout-test:

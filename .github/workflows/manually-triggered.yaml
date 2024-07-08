@@ -40,5 +40,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo $GITHUB_SHA
           echo $GITHUB_REF
+      - run: |
+          echo "Run name: ${{ github.event.inputs.run-name }}"
+          echo "Number of runs: ${{ github.event.inputs.number-input }}"
+          echo "Option selected: ${{ github.event.inputs.option-input }}"
+          echo "Boolean value: ${{ github.event.inputs.boolean-input }}"
+          echo "Environment variables: ${{ github.event.inputs.environment-input }}"

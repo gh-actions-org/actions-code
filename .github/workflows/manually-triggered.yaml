@@ -2,6 +2,38 @@ name: Manually triggered
 
 on:
   workflow_dispatch:
+    inputs:
+      run-name:
+        type: string
+        description: 'Workflow run name'
+        required: true
+        default: 'Default Run Name'
+      number-input:
+        type: number
+        description: 'Number of runs'
+        required: true
+        default: 1
+      option-input:
+        type: choice
+        description: 'Select an option'
+        required: true
+        default: 'Option 1'
+        options:
+          - Option 1
+          - Option 2
+          - Option 3
+      boolean-input:
+        type: boolean
+        description: 'Enable or disable'
+        required: true
+        default: true
+      environment-input:
+        type: environment
+        description: 'Environment variables'
+        required: true
+        default: |
+          KEY1=VALUE1
+          KEY2=VALUE2
 
 jobs:
   log-info:

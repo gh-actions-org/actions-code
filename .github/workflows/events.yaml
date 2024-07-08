@@ -2,10 +2,26 @@ name: Repository Events
 
 on:
   push:
+    branches:
+      - main
+      - 'feature/*' # Match any branch prefixed with 'feature/'
+      - 'feature/**' # Match any branch prefixed with 'feature/' and any number of subdirectories
+      - '!feature/featureA' # Exclude featureA branch, order matters
+    # branches-ignore:
+    #   - develop
+    tags:
+      - v1.* # Match any tag that starts with 'v1.'
+    paths:
+      - '**.js' # Match any file with a .js extension
+      - '!app.js' # Exclude app.js file, order matters
   pull_request:
     types:
       - opened
       - synchronize
+    branches:
+      - main
+    paths:
+      - '**.js'
   issues:
     types:
       - opened

@@ -1,0 +1,11 @@
+name: External Events
+
+on:
+  repository_dispatch: # Triggered by an external event
+
+jobs:
+  echo-string:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "External event triggered"

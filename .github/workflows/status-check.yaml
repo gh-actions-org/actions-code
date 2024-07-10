@@ -9,6 +9,9 @@ jobs:
       - name: Step 1
         run: sleep 20
 
+      - name: Fail step
+        run: exit 1
+
       - name: Runs on Failure
         if: failure()
         run: echo "This job runs only on failure"

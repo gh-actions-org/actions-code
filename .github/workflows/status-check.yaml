@@ -10,11 +10,12 @@ jobs:
         run: sleep 20
 
       - name: Fail step
+        id: fail-step
         run: exit 1
 
       - name: Runs on Failure
-        if: failure()
-        run: echo "This job runs only on failure"
+        if: failure() && steps.fail-step.conclusion == 'failure'
+        run: echo "This job runs only when fail step fails"
 
       - name: Runs on Success
         # This is not necessary, as the job runs only on success by default

@@ -11,7 +11,7 @@ jobs:
     # permissions: write-all # Set permissions to write-all scopes
     # permissions: {} # Disable all permissions (GIT_HUB_TOKEN wont have any permissions)
     permissions:
-      issues: write
+      pull-requests: write
     steps:
       - name: Comment on New PRs
         uses: actions/github-script@v7

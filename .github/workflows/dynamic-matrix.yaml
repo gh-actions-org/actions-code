@@ -16,6 +16,8 @@ on:
 jobs:
   prepare-matrix:
     runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.matrix-result.outputs.result }}
     steps:
       - uses: actions/github-script@v7
         id: matrix-result
@@ -23,15 +25,8 @@ jobs:
           script: |
             const os = '${{ github.event.inputs.os }}'.split(',');
             const nodeVersion = '${{ github.event.inputs.node-version }}'.split(',');
-            const matrix = [];
-            os.forEach(os => {
-              nodeVersion.forEach(nodeVersion => {
-                matrix.push({ os, nodeVersion });
-              });
-            });
-            console.log(JSON.stringify(matrix));
-            core.setOutput('matrix', JSON.stringify(matrix));
-            return matrix;
+
+            return { os: os, 'node-version': nodeVersion};
           result-encoding: json
       - run: echo "${{ steps.matrix-result.outputs.result }}"
       - run: echo "step-output=value" >> $GITHUB_OUTPUT
@@ -42,10 +37,11 @@ jobs:
           echo "${{steps.step-1.outputs.step-output}}"
           echo "${{steps.step-2.outputs.step-output}}"
   node-matrix:
+    needs: prepare-matrix
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest]
-        node-version: [14, 16, 18]
+        os: ${{ fromJson(needs.prepare-matrix.outputs.matrix).os}}
+        node-version: ${{ fromJson(needs.prepare-matrix.outputs.matrix).node-version }}
     runs-on: ${{ matrix.os }}
     steps:
       - run: echo "This is an experimental run"

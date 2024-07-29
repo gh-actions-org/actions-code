@@ -17,7 +17,7 @@ jobs:
   prepare-matrix:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::set-output name=step-output::${{ 'value' }}"
+      - run: echo "step-output=value" >> $GITHUB_OUTPUT
         id: step-1
       - run: echo "step-output=value 2" >> $GITHUB_OUTPUT
         id: step-2

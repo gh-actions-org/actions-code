@@ -26,7 +26,7 @@ jobs:
     #   max-parallel: 3
     runs-on: ${{ matrix.os }}
     steps:
-      - if: matrix.experimental == 'true'
+      - if: matrix.experimental == true
         run: exit 1
       - run: echo "This is an experimental run"
       - run: node -v

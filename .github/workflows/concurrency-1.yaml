@@ -8,7 +8,9 @@ on:
         required: true
         type: environment
 
-concurrency: 'my-concurrency-key'
+concurrency:
+  group: 'my-concurrency-key'
+  cancel-in-progress: true
 jobs:
   sleep:
     runs-on: ubuntu-latest

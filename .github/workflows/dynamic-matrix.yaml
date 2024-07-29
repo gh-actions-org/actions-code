@@ -17,6 +17,23 @@ jobs:
   prepare-matrix:
     runs-on: ubuntu-latest
     steps:
+      - uses: actions/github-script@v7
+        id: matrix-result
+        with:
+          script: |
+            const os = '${{ github.event.inputs.os }}'.split(',');
+            const nodeVersion = '${{ github.event.inputs.node-version }}'.split(',');
+            const matrix = [];
+            os.forEach(os => {
+              nodeVersion.forEach(nodeVersion => {
+                matrix.push({ os, nodeVersion });
+              });
+            });
+            console.log(JSON.stringify(matrix));
+            core.setOutput('matrix', JSON.stringify(matrix));
+            return matrix;
+          result-encoding: json
+      - run: echo "${{ steps.matrix-result.outputs.result }}"
       - run: echo "step-output=value" >> $GITHUB_OUTPUT
         id: step-1
       - run: echo "step-output=value 2" >> $GITHUB_OUTPUT

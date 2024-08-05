@@ -18,6 +18,8 @@ jobs:
       access-token: ${{ secrets.ACCESS_TOKEN }}
 
   calling-same-repo-reusable-workflow:
+    # permissions:
+    # issues: read # Permissions are reflected in the nested workflow
     uses: ./.github/workflows/reusable-workflow.yaml
     secrets: inherit
   using-reusable-workflow-output:

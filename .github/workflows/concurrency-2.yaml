@@ -10,7 +10,7 @@ on:
         type: environment
 
 concurrency:
-  group: ${{ github.event.inputs.environment }}-concurrency-key
+  group: ${{ github.workflow }}-${{ github.event.inputs.environment }}-concurrency-key
   cancel-in-progress: true
 jobs:
   sleep:

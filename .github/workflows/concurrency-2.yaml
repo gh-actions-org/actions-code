@@ -1,0 +1,20 @@
+name: Concurrency 2
+run-name: Concurrency 2 (${{ inputs.environment }})
+
+on:
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Environment'
+        required: true
+        type: environment
+
+concurrency:
+  group: ${{ github.event.inputs.environment }}-concurrency-key
+  cancel-in-progress: true
+jobs:
+  sleep:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Sleep
+        run: sleep 10

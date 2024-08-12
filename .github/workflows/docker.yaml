@@ -29,3 +29,13 @@ jobs:
       - name: Log Env Variables
         run: |
           echo $API_URL
+      - name: Container in steps
+        uses: docker://node:18-alpine3.19
+        with:
+          entrypoint: /usr/local/bin/node
+          args: -p "console.log('Hello, world!')"
+      - name: Log Node Version in Container
+        uses: docker://node:18-alpine3.19
+        with:
+          #   entrypoint: /usr/local/bin/node // Default
+          args: -v

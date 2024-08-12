@@ -29,6 +29,9 @@ jobs:
       - name: Log Env Variables
         run: |
           echo $API_URL
+      - name: Create File
+        run: |
+          echo "Hello, world from shared file!" > hello.txt
       - name: Container in steps
         uses: docker://node:18-alpine3.19
         with:
@@ -39,3 +42,8 @@ jobs:
         with:
           #   entrypoint: /usr/local/bin/node // Default
           args: -v
+      - name: Display shared file content
+        uses: docker://node:18-alpine3.19
+        with:
+          entrypoint: cat
+          args: hello.txt

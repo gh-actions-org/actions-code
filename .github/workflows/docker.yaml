@@ -1,0 +1,31 @@
+name: Docker Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  docker-job:
+    runs-on: ubuntu-latest
+    container:
+      image: node:22-alpine3.19
+      #   credentials:
+      #     username:
+      #     password:
+      env:
+        API_URL: https://icanhazdadjoke.com/
+      ports:
+        - 80
+    #   volumes:
+    #     - vol_name: /path/in/container
+    #     - path/in/container
+    #     - path/in/host: /path/in/container
+    #   options:
+    #     --cpus 1
+    steps:
+      - name: Log Node & OS Versions
+        run: |
+          node --version
+          cat /etc/os-release
+      - name: Log Env Variables
+        run: |
+          echo $API_URL

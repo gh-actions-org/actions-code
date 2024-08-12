@@ -47,3 +47,9 @@ jobs:
         with:
           entrypoint: cat
           args: hello.txt
+      - uses: actions/checkout@v4
+      - name: Custom entrypoint
+        uses: docker://node:18-alpine3.19
+        with:
+          entrypoint: ./script.sh
+          args: 'Some string'

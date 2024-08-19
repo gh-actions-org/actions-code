@@ -12,7 +12,7 @@ outputs:
 runs:
   using: 'node20'
   main: index.js
-  pre: 'setup.js'
-  pre-if: runner.os == 'linux'
-  post: 'teardown.js'
-  post-if: runner.os == 'linux'
+  # pre: 'setup.js'
+  # pre-if: runner.os == 'linux'
+  # post: 'teardown.js'
+  # post-if: runner.os == 'linux'

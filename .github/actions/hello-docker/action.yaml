@@ -18,4 +18,4 @@ runs:
   env:
     HELLO: 'Hello, world!'
   post-entrypoint: /teardown.sh
-  post-entrypoint-if: runner.os == 'linux'
+  post-if: runner.os == 'linux'

@@ -1,0 +1,21 @@
+name: Hello World
+author: Vitor
+description: 'Greet someone and record the time'
+inputs:
+  who_to_greet:
+    description: 'Name of the person to greet'
+    required: true
+    default: 'World'
+outputs:
+  time:
+    description: 'The time we greeted you'
+runs:
+  using: 'docker'
+  image: Dockerfile
+  # entrypoint: /bin/sh -c
+  args:
+    - ${{ inputs.who_to_greet}}
+  env:
+    HELLO: 'Hello, world!'
+  post-entrypoint: /teardown.sh
+  post-entrypoint-if: runner.os == 'linux'

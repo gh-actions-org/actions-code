@@ -33,7 +33,7 @@ runs:
       shell: bash
       if: inputs.upload_joke
       run: |
-        echo "{{ steps.joke.outputs.random_joke }}" > joke.txt
+        echo ${{ steps.joke.outputs.random_joke }} > joke.txt
     - name: Upload the Joke
       uses: actions/upload-artifact@v4
       if: inputs.upload_joke
@@ -45,5 +45,5 @@ runs:
       env:
         SLACK_WEBHOOK: ${{ inputs.slack_webhook }}
         SLACK_TITLE: 'Random Joke'
-        SLACK_MESSAGE: "${{ inputs.slack_username && format('{0}{1} {2}', '<@', inputs.slack_username, steps.joke.outputs.random_joke ) || steps.joke.outputs.random_joke }}"
+        SLACK_MESSAGE: "${{ inputs.slack_username && format('{0}{1} {2}', '@', inputs.slack_username, steps.joke.outputs.random_joke ) || steps.joke.outputs.random_joke }}"
         SLACK_COLOR: '#36a64f'

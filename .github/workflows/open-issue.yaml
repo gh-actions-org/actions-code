@@ -1,0 +1,31 @@
+name: Open Issue
+
+on:
+  workflow_dispatch:
+    inputs:
+      title:
+        description: 'Issue Title'
+        required: true
+        type: string
+        default: 'New Issue'
+      body:
+        description: 'Issue Body'
+        required: true
+        type: string
+        default: 'This is a new issue'
+      assignees:
+        description: 'Assignees'
+        required: false
+        type: string
+
+jobs:
+  open-issue:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: gh-actions-org/open-issue-action@main
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          title: ${{ github.event.inputs.title }}
+          body: ${{ github.event.inputs.body }}
+          assignees: ${{ github.event.inputs.assignees }}

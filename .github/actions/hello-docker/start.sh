@@ -7,3 +7,4 @@ time=$(date)
 echo "::set-output name=time::$time"
 echo "time=$time" >> $GITHUB_OUTPUT
 echo "HELLO_TIME=$time" >> $GITHUB_ENV
+# exit 1 # This will cause the action to fail
